@@ -1,7 +1,4 @@
 <?php
-    while(0):
-    endwhile;
-
 
     if (isset($_POST["x"]) && isset($_POST["y"])){
         $x = (int)$_POST["x"];
