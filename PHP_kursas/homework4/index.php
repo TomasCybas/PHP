@@ -1,5 +1,6 @@
 <?php
 
+
 ?>
 
 
@@ -18,24 +19,25 @@
 <body>
 <div class="container-fluid">
     <div class="container">
-        <form action="table.php" method="get" class="row py-5">
+        <form action="table.php?" method="get" class="row py-5">
             <div class="form-group col-4">
+                <input class="d-none" type="number" name="seed" value="<?php echo rand(1, 1000)?>">
                 <p class="text-success">
                     Skaičių rinkinys
                 </p>
-                <input type="radio" name="number_set" required value="1"> Nuo 1 iki 5 <br>
-                <input type="radio" name="number_set" value="2"> Nuo 1 iki 10 <br>
-                <input type="radio" name="number_set" value="3"> Nuo 1 iki 12 <br>
-                <input type="radio" name="number_set" value="4"> Nuo 1 iki 15<br>
+                <input type="radio" name="number_set" required value="5"> Nuo 1 iki 5 <br>
+                <input type="radio" name="number_set" value="10"> Nuo 1 iki 10 <br>
+                <input type="radio" name="number_set" value="12"> Nuo 1 iki 12 <br>
+                <input type="radio" name="number_set" value="15"> Nuo 1 iki 15<br>
             </div>
             <div class="form-group col-4">
                 <p class="text-success">
                     Sudėtingumas
                 </p>
-                <input type="radio" name="difficulty" required value="1"> Lengvas <br>
-                <input type="radio" name="difficulty" value="2"> Vidutinis <br>
-                <input type="radio" name="difficulty" value="3"> Sunkus <br>
-                <input type="radio" name="difficulty" value="4"> Sunkiausias<br>
+                <input type="radio" name="difficulty" required value="10"> Lengvas <br>
+                <input type="radio" name="difficulty" value="30"> Vidutinis <br>
+                <input type="radio" name="difficulty" value="50"> Sunkus <br>
+                <input type="radio" name="difficulty" value="70"> Sunkiausias<br>
             </div>
             <div class="col-4 my-auto">
                 <button type="submit" class="btn btn-primary">Generuoti</button>

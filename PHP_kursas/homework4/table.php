@@ -1,6 +1,7 @@
 <?php
 $difficulty = $_GET["difficulty"];
 $numberSet = $_GET["number_set"];
+srand((int)$_GET["seed"]);
 
 ?>
 
@@ -15,13 +16,39 @@ $numberSet = $_GET["number_set"];
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 </head>
 <body>
 <div class="container-fluid">
-    <div class="container">
-        <table class="table table-bordered py-5">
-            <?php ?>
+    <div class="container py-5">
+        <table class="table text-center table-bordered">
+            <tbody>
+            <?php for ($i = 0; $i <= $numberSet; $i++) { ?>
+            <tr>
+                <?php for ($j = 0; $j <= $numberSet; $j++){ ?>
+                    <td <?php echo ($i == 0 || $j == 0)? "class= 'head font-weight-bold'":"" ?> >
+                        <?php
+                            if($i == 0) {
+                                if($j == 0) {
+                                    echo "<i class='far fa-smile'></i>";
+                                }else {
+                                    echo $j;
+                                }
+                            } elseif ($j == 0) {
+                                echo $i;
+                            } else {
+                                if( rand(1, 100) > $difficulty) {
+                                    echo $i * $j;
+                                }
+                            }
 
+                        ?>
+                    </td>
+                <?php } ?>
+            </tr>
+           <?php }?>
+            </tbody>
         </table>
 
     </div>
