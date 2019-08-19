@@ -19,11 +19,12 @@ function sortByPriceDesc($a, $b){
 
 if (isset($_GET["sort"])){
 $sort = $_GET["sort"];
+    usort($skelbimai, $sort);
 }else {
-    $sort="sortByDateDesc";
+    $sort="";
 }
 
-usort($skelbimai, $sort);
+
 
 ?>
 
@@ -43,7 +44,9 @@ usort($skelbimai, $sort);
     .small {
         font-size: 12px;
     }
-
+    .sort {
+        height: 19px;
+    }
     .sort a {
         text-decoration: none;
         color: grey;
@@ -58,18 +61,23 @@ usort($skelbimai, $sort);
     <div class="container py-5">
         <div class="row">
             <div class="col-6 mx-auto">
-                <div class="text-right sort">
-                    <?php if ($sort != "sortByPriceAsc"){
-                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByPriceAsc'>Kaina</a>";
+                <p class="text-right sort pb-2">
+                    <?php if ($sort == "sortByPriceAsc"){
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByPriceDesc'>Kaina &uarr;</a>";
+                     } else if ($sort == "sortByPriceDesc") {
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByPriceAsc'>Kaina &darr;</a>";;
                     } else {
-                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByPriceDesc'>Kaina</a>";
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByPriceAsc'>Kaina &nbsp;</a>";
                     } ?>
-                    <?php if ($sort != "sortByDateAsc"){
-                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByDateAsc'>Data</a>";
+                    <?php if ($sort == "sortByDateAsc"){
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByDateDesc'>Data &uarr;</a>";
+                    } else if ($sort == "sortByDateDesc") {
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByDateAsc'>Data &darr;</a>";;
                     } else {
-                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByDateDesc'>Data</a>";
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByDateAsc'>Data &nbsp;</a>";
                     } ?>
-                </div>
+
+                </p>
                 <ul class="list-group list-group-flush clearfix">
                     <?php foreach ($skelbimai as $skelbimas) { ?>
                         <li class="list-group-item">
