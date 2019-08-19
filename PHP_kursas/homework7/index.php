@@ -1,5 +1,30 @@
 <?php
 include_once "skelbimai.php";
+
+function sortByDateAsc($a, $b){
+    return $a["onPay"] <=> $b["onPay"];
+}
+
+function sortByDateDesc($a, $b){
+    return $b["onPay"] <=> $a["onPay"];
+}
+
+function sortByPriceAsc($a, $b){
+    return $a["cost"] <=> $b["cost"];
+}
+
+function sortByPriceDesc($a, $b){
+    return $b["cost"] <=> $a["cost"];
+}
+
+if (isset($_GET["sort"])){
+$sort = $_GET["sort"];
+}else {
+    $sort="sortByDateDesc";
+}
+
+usort($skelbimai, $sort);
+
 ?>
 
 <!doctype html>
@@ -14,6 +39,17 @@ include_once "skelbimai.php";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+<style>
+    .small {
+        font-size: 12px;
+    }
+
+    .sort a {
+        text-decoration: none;
+        color: grey;
+        font-size: 13px;
+    }
+</style>
 <body>
 <nav class="navbar navbar-expand-sm navbar-light bg-dark">
     <a class="navbar-brand text-white" href="#">Super Skelbimai</a>
@@ -22,49 +58,64 @@ include_once "skelbimai.php";
     <div class="container py-5">
         <div class="row">
             <div class="col-6 mx-auto">
-                <?php foreach ($skelbimai as $skelbimas) { ?>
-                    <p>
-                        <strong>Skelbimo id: <?php echo $skelbimas["id"] ?></strong>
-                        <br>
-                        <br>
-                        <?php echo $skelbimas["text"] ?>
-                        <br>
-                        <br>
-                        <?php if(!$skelbimas["onPay"]=="") { ?>
-                            Skelbimas apmokėtas <?php $date = date("Y m d H:i", $skelbimas["onPay"]);  echo $date?>
-                        <?php } else{
-                            echo "Skelbimas neapmokėtas";
-                        } ?>
-                    </p>
-                    <hr>
-                <?php } ?>
+                <div class="text-right sort">
+                    <?php if ($sort != "sortByPriceAsc"){
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByPriceAsc'>Kaina</a>";
+                    } else {
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByPriceDesc'>Kaina</a>";
+                    } ?>
+                    <?php if ($sort != "sortByDateAsc"){
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByDateAsc'>Data</a>";
+                    } else {
+                        echo "<a href='http://localhost/PHP/PHP_kursas/homework7/index.php?sort=sortByDateDesc'>Data</a>";
+                    } ?>
+                </div>
+                <ul class="list-group list-group-flush clearfix">
+                    <?php foreach ($skelbimai as $skelbimas) { ?>
+                        <li class="list-group-item">
+                            <p>
+                                <strong>Skelbimo id: <?php echo $skelbimas["id"] ?></strong>
+                                <br>
+                                <br>
+                                <?php echo $skelbimas["text"] ?>
+                                <br>
+                                <br>
+                                <?php if (!$skelbimas["onPay"] == "") { ?>
+                                    <span class="small">Skelbimo kaina: <?php echo $skelbimas["cost"] / 100 ?>€ Apmokėta <?php $date = date("Y m d H:i", $skelbimas["onPay"]);
+                                        echo $date ?></span>
+                                <?php } ?>
+                            </p>
+                        </li>
+                    <?php } ?>
+                </ul>
+
             </div>
         </div>
     </div>
 </div>
-<footer class="bg-dark py-2 px-2
-    <div class="row">
-        <div class="col-3 text-white">
-            <p>
-                Puslapyje patalpinta <?= count($skelbimai) ?> skelbimų. <br>
-                <?php
-                $count = 0;
-                $paidAmount = 0;
-                $amountToBePaid = 0;
-                foreach ($skelbimai as $skelbimas) {
-                    if(!$skelbimas["onPay"]==""){
-                        $count++;
-                        $paidAmount+= $skelbimas["cost"];
-                    } else {
-                        $amountToBePaid+= $skelbimas["cost"];
-                    }
-                }?>
-                Iš jų apmokėta: <?= $count ?> <br>
-                Už skelbimus sumokėta: <?= $paidAmount ?> € <br>
-                Už skelbimus nesumokėta: <?= $amountToBePaid ?> €
-            </p>
-        </div>
+<footer class="bg-dark py-2 px-2"
+<div class="row">
+    <div class="col-3 text-white">
+        <p>
+            Puslapyje patalpinta <?= count($skelbimai) ?> skelbimų. <br>
+            <?php
+            $count = 0;
+            $paidAmount = 0;
+            $amountToBePaid = 0;
+            foreach ($skelbimai as $skelbimas) {
+                if (!$skelbimas["onPay"] == "") {
+                    $count++;
+                    $paidAmount += $skelbimas["cost"];
+                } else {
+                    $amountToBePaid += $skelbimas["cost"];
+                }
+            } ?>
+            Iš jų apmokėta: <?= $count ?> <br>
+            Už skelbimus sumokėta: <?= $paidAmount / 100 ?> € <br>
+            Už skelbimus nesumokėta: <?= $amountToBePaid / 100 ?> €
+        </p>
     </div>
+</div>
 </footer>
 
 <!-- Optional JavaScript -->
