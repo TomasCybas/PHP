@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_GET["path"]) && isset($_GET["ext"])){
     $path = $_GET["path"];
     $ext = $_GET["ext"];

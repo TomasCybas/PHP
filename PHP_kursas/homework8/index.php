@@ -1,38 +1,30 @@
 <?php
-$startPath = "../../../Final_Project";
-if(isset($_GET["path"])){
-    $path = $_GET["path"];
-} else {
-    $path = $startPath;
+session_start();
+include_once "browser.php";
+if(isset($_SESSION["isLoggedIn"])){
+    $isLoggedIn = $_SESSION["isLoggedIn"];
+    $user = $_SESSION["user"];
+} else if (isset($_COOKIE["isLoggedIn"])){
+    $isLoggedIn = $_COOKIE["isLoggedIn"];
+    $user = $_COOKIE["user"];
+    } else {
+    $isLoggedIn = false;
 }
+/*
+if(isset($_COOKIE["isLoggedIn"])){
+    $cookieLogin = $_COOKIE["isLoggedIn"];
+} else {
+    $cookieLogin = false;
+}*/
 
-
-function printDir($path){
-    global $startPath;
-    $dh = opendir($path);
-    echo "<ul class='fa-ul'>";
-    if($path != $startPath){
-        $prevPath = dirname($path, 1);
-        echo "<li><span class='fa-li'></span><i class='fas fa-folder-open'></i><a href='index.php?path=$prevPath'>ATGAL</a></li>";
-    }
-    while($item = readdir($dh)){
-        if($item == "." || $item == "..") continue;
-        echo "<li>";
-        if(is_dir($path."/".$item)){
-            echo "<span class='fa-li'><i class='far fa-folder'></i></span>";
-            echo "<a href='index.php?path=$path/$item'>$item</a>";
-        }
-        if(is_file($path."/".$item)){
-            $ext = pathinfo($path."/".$item, PATHINFO_EXTENSION);
-            echo "<span class='fa-li'><i class='far fa-file'></i></span>";
-            echo "<a target='_blank' href='$path/$item'>$item</a>";
-        }
-        echo "</li>";
-    }
-    echo "</ul>";
-    closedir($dh);
+if(! $isLoggedIn){
+    header("Location: login.php");
 }
 ?>
+
+
+
+
 
 
 <!doctype html>
@@ -50,15 +42,43 @@ function printDir($path){
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 </head>
 <style>
-    body {
-        min-height: 100%;
+    body, html {
+        height: 100%
+    }
+    .container-fluid {
+        height: 100%;
+        overflow-hidden;
+    }
+    .top-bar {
+        font-size: 13px;
+    }
+    i {
+        color: darkred;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    a:hover {
+        text-decoration: none;
+        color: darkred;
     }
 </style>
 <body>
-
+<header class="bg-light">
+    <div class="top-bar float-right p-2">
+        <p class="d-inline-block"><?php echo $user ?></p>
+        <a href="logout.php">Atsijungti</a>
+    </div>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Failų naršyklė</a>
+    </nav>
+</header>
 <div class="container-fluid bg-light">
     <div class="container">
-        <?php printDir($path)?>
+        <div class="py-2">
+            <?php printDir($path)?>
+        </div>
     </div>
 
 </div>
