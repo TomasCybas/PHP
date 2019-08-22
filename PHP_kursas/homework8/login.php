@@ -20,7 +20,7 @@ if (isset($_POST["userName"]) && isset($_POST["password"])) {
         }
         if ($remember == "on") {
             setcookie("user", $userName, time() +60*60*24*30);
-            setcookie("isLoggedIn", "true");
+            setcookie("isLoggedIn", "true", time() + 60*60*24*30);
             header("Location: index.php");
         } else {
             $_SESSION["user"] = $userName;

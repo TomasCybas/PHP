@@ -31,5 +31,6 @@ function printDir($path){
     }
     echo "</ul>";
     closedir($dh);
+
 }
 ?>
