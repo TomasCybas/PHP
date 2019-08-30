@@ -7,6 +7,12 @@ $employee = $conn -> query(
                 LEFT JOIN positions ON employees.position_id = positions.id
                 WHERE employees.id = '$employee_id'")
         -> fetch_assoc();
+$projects = $conn -> query(
+        "SELECT employee_projects_xref.project_id, projects.* 
+        FROM employee_projects_xref     
+        LEFT JOIN projects ON employee_projects_xref.project_id = projects.id 
+        WHERE employee_id = '$employee_id'")
+        -> fetch_all(MYSQLI_ASSOC);
 
 ?>
 
@@ -125,6 +131,18 @@ $employee = $conn -> query(
                     </tr>
                 </table>
             </div>
+        </div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>Projektai</th>
+                </tr>
+                <?php foreach ($projects as $project) { ?>
+                <tr>
+                    <td><?=$project['name']?></td>
+                </tr>
+                <?php } ?>
+            </table>
         </div>
     </div>
 </div>
