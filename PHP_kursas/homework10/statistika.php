@@ -4,9 +4,17 @@ $result = $conn -> query("SELECT * FROM employees");
 
 $employees = $result -> fetch_all(MYSQLI_ASSOC);
 
-$result2 = $conn -> query("SELECT * FROM positions");
+$result2 = $conn -> query("SELECT positions.*, COUNT(employees.id) as total 
+                        FROM `positions` LEFT JOIN employees ON positions.id = employees.position_id 
+                        GROUP BY positions.name ORDER BY id");
 
 $positions = $result2 -> fetch_all(MYSQLI_ASSOC);
+
+$employees_by_educ = $conn -> query("SELECT education, COUNT(id) as total, ROUND(AVG(salary)/100, 2) as average 
+                            FROM employees GROUP BY education") -> fetch_all(MYSQLI_ASSOC);
+
+$employees_by_gender = $conn -> query("SELECT gender, COUNT(*) as total, ROUND(COUNT(*)/(SELECT COUNT(*) FROM employees), 2)*100 as percentage 
+                                FROM employees GROUP BY gender") -> fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +27,9 @@ $positions = $result2 -> fetch_all(MYSQLI_ASSOC);
 <title>Baltic Talents</title>
 
 <!-- Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,31 +45,21 @@ td {
 
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Baltic Talents</a>
-			</div>
-
-			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="statistika.php">Įmonės statistika</a></li>
-				</ul>
-
-
-			</div>
-		</div>
-	</nav>
-
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="#">Baltic Talents</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="statistika.php">Įmonės statistika</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 	<div class="container" id="content" tabindex="-1">
 		<div class="row">
 			<div class="col-md-12">
@@ -105,20 +105,64 @@ td {
 					<table class="table">
 						<tr>
 							<th>Pareigos</th>
-							<th>Bazinis darbo užmokesti</th>
+							<th>Bazinis darbo užmokestis</th>
+                            <th>Darbuotojai</th>
 							<th></th>
 						</tr>
                         <?php foreach ($positions as $position) { ?>
 						<tr>
 							<td class="text-capitalize"><?= $position['name'] ?></td>
 							<td><?= $position['base_salary']/100 ." €" ?></td>
+							<td><?= $position['total'] ?></td>
 							<td><a href="darbuotojai_pareigos.php?id=<?= $position['id']?>" class="btn btn-primary text-capitalize">Rodyti darbuotojus</a></td>
 						</tr>
                         <?php } ?>
 					</table>
 				</div>
 			</div>
-			
+
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">Darbuotojai pagal išsilavinimą:</div>
+
+                    <!-- Table -->
+                    <table class="table">
+                        <tr>
+                            <th>Išsilavinimas</th>
+                            <th>Darbuotojų skaičius</th>
+                            <th>Vidutinis atlyginimas</th>
+                        </tr>
+                        <?php foreach ($employees_by_educ as $item) { ?>
+                            <tr>
+                                <td class="text-capitalize"><?=$item['education']?></td>
+                                <td><?= $item['total'] ?></td>
+                                <td><?= $item['average']. " €"?></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        Darbuotojai pagal lytį:
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Lytis</th>
+                            <th>Darbuotojų skaičius</th>
+                            <th>Procentinė dalis</th>
+                        </tr>
+
+                            <?php foreach ($employees_by_gender as $item) { ?>
+                        <tr>
+                            <td class="text-capitalize"><?=$item['gender'] ?></td>
+                            <td class="text-capitalize"><?=$item['total'] ?></td>
+                            <td class="text-capitalize"><?=$item['percentage']. "%" ?></td>
+                            <?php } ?>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 		</div>
 
 

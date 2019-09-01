@@ -1,0 +1,47 @@
+Užklausa visų darbuotojų projektams.
+
+SELECT e.name, e.surname, p.name
+FROM `employees` as e
+RIGHT JOIN employee_projects_xref as xref ON e.id = xref.employee_id
+LEFT JOIN projects as p ON xref.project_id = p.id
+ORDER BY e.surname, p.name
+
+
+Užklausa darbuotojams be projektų:
+
+SELECT e.name, e.surname, p.name as project
+FROM `employees` as e
+LEFT JOIN employee_projects_xref as xref ON e.id = xref.employee_id
+LEFT JOIN projects as p ON xref.project_id = p.id
+HAVING project is NULL
+ORDER BY e.surname, p.name
+
+Užklausa darbuotojams, kurie uždirba daugiau, nei bazinis atlyginimas:
+
+SELECT e.name, e.surname, e.salary
+FROM employees as e
+LEFT JOIN positions as p ON p.id = e.position_id
+WHERE e.salary > p.base_salary
+ORDER BY e.salary DESC
+
+Užklausa projektams ir prie jų dirbančiam žmonių skaičiui:
+
+SELECT p.name, COUNT(e.id) as total
+FROM `employees` as e
+RIGHT JOIN employee_projects_xref as xref ON e.id = xref.employee_id
+LEFT JOIN projects as p ON xref.project_id = p.id
+GROUP by p.name
+
+Užklausa žmonių dirbančių prie konkretaus projekto kiekiui pagal pareigas:
+
+SELECT p.name as project, pos.name as position, COUNT(e.id) as total
+FROM `employees` as e
+RIGHT JOIN employee_projects_xref as xref ON e.id = xref.employee_id
+LEFT JOIN projects as p ON xref.project_id = p.id
+LEFT join positions as pos ON e.position_id = pos.id
+WHERE p.id = 13
+GROUP by p.name
+
+
+
+

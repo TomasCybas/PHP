@@ -1,19 +1,27 @@
 <?php
 require_once "db_connect.php";
-$employee_id = $conn -> real_escape_string($_GET['id']);
-$employee = $conn -> query(
-        "SELECT employees.*,  positions.name as position_name
+$employee_id = $conn->real_escape_string($_GET['id']);
+
+// darbuotojo pozicijos atnaujinimas
+if(isset($_POST['update_position'])){
+    $new_position_id = $conn -> real_escape_string($_POST['new_position_id']);
+    $conn -> query("UPDATE employees SET position_id = '$new_position_id' WHERE id = '$employee_id'");
+}
+
+$employee = $conn->query(
+    "SELECT employees.*,  positions.name as position_name
                 FROM employees 
                 LEFT JOIN positions ON employees.position_id = positions.id
                 WHERE employees.id = '$employee_id'")
-        -> fetch_assoc();
-$projects = $conn -> query(
-        "SELECT employee_projects_xref.project_id, projects.* 
+    ->fetch_assoc();
+$employee_projects = $conn->query(
+    "SELECT employee_projects_xref.project_id, projects.* 
         FROM employee_projects_xref     
         LEFT JOIN projects ON employee_projects_xref.project_id = projects.id 
         WHERE employee_id = '$employee_id'")
-        -> fetch_all(MYSQLI_ASSOC);
-
+    ->fetch_all(MYSQLI_ASSOC);
+$positions = $conn->query("SELECT * FROM positions")->fetch_all(MYSQLI_ASSOC);
+$projects = $conn -> query("SELECT * FROM projects") -> fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +34,8 @@ $projects = $conn -> query(
     <title>Baltic Talents</title>
 
     <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -38,50 +48,79 @@ $projects = $conn -> query(
         .curr {
             text-align: right;
         }
+        .custom-select {
+            height: 100%;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span> <span
-                        class="icon-bar"></span> <span class="icon-bar"></span> <span
-                        class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Baltic Talents</a>
-        </div>
-        <div class="collapse navbar-collapse"
-             id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="statistika.php">Įmonės statistika</a></li>
-            </ul>
-        </div>
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="#">Baltic Talents</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="statistika.php">Įmonės statistika</a>
+            </li>
+        </ul>
     </div>
 </nav>
+
+
 <div class="container" id="content" tabindex="-1">
     <div class="row">
         <div class="col-md-12">
             <div class="page-header">
-                <h1><?= $employee['name']. " ". $employee['surname']?></h1>
+                <h1><?= $employee['name'] . " " . $employee['surname'] ?></h1>
 
             </div>
         </div>
         <div class="col-md-6">
             <p class="text-capitalize">
-                <b>Pareigos: <?= $employee['position_name']?></b> <br/>
-                <button class="btn btn-primary">Keisti pareigas</button>
+                <b>Pareigos: <?= $employee['position_name'] ?></b> <br/>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#position_update_modal">
+                    Keisti pareigas
+                </button>
+                <!-- Modal -->
+            <div class="modal fade" id="position_update_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="darbuotojas.php?id=<?= $employee_id ?>">
+                                <select name="new_position_id" class="custom-select text-capitalize">
+                                    <option selected>Pasirinkite iš sąrašo</option>
+                                    <?php
+                                    foreach ($positions as $position) { ?>
+                                        <option class="py-2 text-capitalize" value=<?= $position['id']?>><?= $position['name'] ?></option>;
+                                        <?php } ?>
+                                </select>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Atšaukti</button>
+                                    <button type="submit" class="btn btn-success" name="update_position" value="1">Išsaugoti pasirinkimą</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </p>
             <p>
-                <b>Mėnesinė alga: </b> <br/> <?=$employee['salary']/100 ." €"?>
+                <b>Mėnesinė alga: </b> <br/> <?= $employee['salary'] / 100 . " €" ?>
             </p>
         </div>
         <div class="col-md-6">
             <p>
-                <b>Telefonas: </b> <br/> <?=$employee['phone']?>
+                <b>Telefonas: </b> <br/> <?= $employee['phone'] ?>
             </p>
         </div>
         <div class="clearfix"></div>
@@ -133,16 +172,51 @@ $projects = $conn -> query(
             </div>
         </div>
         <div class="col-md-6">
-            <table class="table">
-                <tr>
-                    <th>Projektai</th>
-                </tr>
-                <?php foreach ($projects as $project) { ?>
-                <tr>
-                    <td><?=$project['name']?></td>
-                </tr>
-                <?php } ?>
-            </table>
+            <div class="panel panel-primary">
+                <div class="panel-heading"> Projektai</div>
+                <table class="table">
+                    <?php if (!empty($employee_projects)) {
+                        foreach ($employee_projects as $employee_project) { ?>
+                            <tr>
+                                <td><?= $employee_project['name'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    <?php } else {
+                        echo "<tr> <td>Šiuo metu darbuotojas projektų neturi</td></tr>";
+                    } ?>
+                </table>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#project_modal">
+                Priskirti projektą
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="project_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="add_project.php?id=<?= $employee_id ?>">
+                                <select name="project_to_add_id" class="custom-select text-capitalize">
+                                    <option selected>Pasirinkite iš sąrašo</option>
+                                    <?php
+                                    foreach ($projects as $project) { ?>
+                                        <option class="py-2 text-capitalize" value=<?=$project['id']?>><?= $project['name'] ?></option>;
+                                        <?php } ?>
+                                </select>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Atšaukti</button>
+                                    <button type="submit" class="btn btn-success" name="add_project" value="1">Išsaugoti pasirinkimą</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
