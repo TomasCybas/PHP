@@ -1,0 +1,9 @@
+užklausa visų turinčių pažymius studentų pažymiams gauti
+
+SELECT s.name, c.name as kursas, l.name as paskaita, sg.grade as pazymys
+FROM students as s
+LEFT JOIN student_courses as sc ON s.id = sc.student_id
+LEFT JOIN courses as c ON c.id = sc.course_id
+LEFT JOIN course_lectures as cl ON cl.course_id = c.id
+LEFT JOIN lectures as l ON l.id = cl.lecture_id
+RIGHT JOIN studentgrades as sg ON sg.student_id = s.id AND sg.lecture_id = l.id AND sg.course_id = c.id
