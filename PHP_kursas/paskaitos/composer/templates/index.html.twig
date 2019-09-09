@@ -1,0 +1,9 @@
+
+{% extends 'layout.html' %}
+
+{% block content %}
+{% for country in countries %}
+<p>{{country.name}} <a href="country.php?code={{country.code}}" class="btn btn-primary">Plačiau</a></p>
+{% endfor %}
+
+{% endblock %}

@@ -11,6 +11,9 @@ class Customer{
     public $position;
     public $companyId;
 
+    public $company = null;
+
+
 
     /**
      * Customer constructor.
@@ -23,7 +26,7 @@ class Customer{
      * @param null $address
      * @param null $position
      */
-    public function __construct($companyId, $name, $surname, $isNewEntry = FALSE, $phone = null, $email = null, $address = null, $position = null){
+    public function __construct($companyId, $name = null, $surname = null, $isNewEntry = FALSE, $phone = null, $email = null, $address = null, $position = null){
         if($isNewEntry != TRUE){
             $sql = "SELECT cust.* FROM customers as cust 
                 LEFT JOIN companies as comp ON cust.company_id = comp.id
@@ -67,8 +70,8 @@ class Customer{
 
     public function getCompany(){
         $id = DB_MySQL::getRow("SELECT * FROM companies WHERE id = '$this->companyId'")['vat_code'];
-        $company = new Company($id);
-        return $company;
+        $this->company = new Company($id);
+        return $this->company;
     }
 
     public function getConversations(){
