@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Classes;
 class Company{
     public $id;
     public $name;
@@ -14,13 +14,14 @@ class Company{
     /**
      * Company constructor. If short name is not given, searches the database by VAT code
      * @param $vatCode - VAT Code of the company
+     * @param null $id
      * @param  $name - short name of the company
      * @param  $address - company address
      * @param  $companyName -  full company name
      * @param  $phone
      * @param  $email
      */
-    public function __construct($vatCode, $name = null, $address = null, $companyName = null, $phone = null, $email = null){
+    public function __construct($vatCode, $id = null, $name = null, $address = null, $companyName = null, $phone = null, $email = null){
         if($name == null) {
             $row = DB_MySQL::getRow("SELECT * FROM companies WHERE vat_code = '$vatCode'");
             $this->id = $row['id'];
@@ -69,6 +70,15 @@ class Company{
                 phone = '$this->phone',
                 email = '$this->email'";
         DB_MySQL::query($sql);
+    }
+
+    public static function getCompanies(){
+        $companies = [];
+        $data = DB_MySQL::getTable("SELECT * FROM companies");
+        foreach ($data as $item) {
+            $companies []= new Company($item['vat_code']);
+        }
+        return $companies;
     }
 
 

@@ -1,11 +1,12 @@
 <?php
+namespace Classes;
 require_once "config.php";
 
 class DB_MySQL {
     public static $conn = null;
 
     public static function connect(){
-        self::$conn=new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        self::$conn=new \mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
         self::$conn->set_charset('utf8');
     }
 

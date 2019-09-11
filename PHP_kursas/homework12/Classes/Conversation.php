@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Classes;
 class Conversation{
     public $id;
     public $customerId;

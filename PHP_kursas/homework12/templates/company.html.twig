@@ -1,0 +1,56 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div class="row my-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ company.companyName }} rekvizitai
+                </h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">PVM kodas: {{ company.vatCode }}</li>
+                    <li class="list-group-item">Adresas: {{ company.address }}</li>
+                    <li class="list-group-item">Telefonas: {{ company.phone }}</li>
+                    <li class="list-group-item">El. paštas: {{ company.email }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Įmonės klientai
+                </h5>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Vardas</th>
+                        <th>Pavardė</th>
+                        <th>Telefonas</th>
+                        <th>El. paštas</th>
+                        <th>Pareigos</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                   {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.surname }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.position }}</td>
+                        <td><a class="btn btn-primary" href="conversations.php?id={{ customer.id }}">Peržiūrėti pokalbių istoriją</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

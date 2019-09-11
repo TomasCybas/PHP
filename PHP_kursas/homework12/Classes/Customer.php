@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Classes;
 class Customer{
     public $id;
     public $name;
@@ -64,8 +64,13 @@ class Customer{
         DB_MySQL::query("DELETE FROM customers WHERE id = '$this->id'");
     }
 
-    public static function getCustomers() {
-       return DB_MySQL::getTable("SELECT * FROM customers");
+    public static function getCustomers($companyId = null) {
+        if($companyId == null){
+            return DB_MySQL::getTable("SELECT * FROM customers");
+        } else {
+            return DB_MySQL::getTable("SELECT * FROM customers WHERE company_id = '$companyId' ");
+        }
+
     }
 
     public function getCompany(){

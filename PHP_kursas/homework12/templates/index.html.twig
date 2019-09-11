@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-4">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Įmonės</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for company in companies %}
+                    <tr>
+                        <td>
+                            {{ company.companyName }}
+                        </td>
+                        <td class="text-right">
+                            <a class="btn btn-primary btn-sm" href="company.php?code={{ company.vatCode }}">Plačiau</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
