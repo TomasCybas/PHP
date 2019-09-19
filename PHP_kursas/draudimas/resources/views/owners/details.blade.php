@@ -10,6 +10,13 @@
                     <div class="card-body">
                         {{$owner->name}} <br>
                         {{$owner->surname}}
+                        <div class="pb-2">
+                            <a href="{{route('owners.edit', $owner->id)}}" class="btn btn-success">Keisti saviinko informaciją</a>
+                        </div>
+                        <div class="pb-2">
+                            <a href="{{route('owners.delete', $owner->id)}}" class="btn btn-danger">Ištrinti savininką</a>
+                        </div>
+
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -34,8 +41,9 @@
                         </table>
 
                         <div>
-                            <a href="" class="btn btn-success">Pridėti naują automobilį</a>
+                            <a href="{{route('cars.add', $owner->id)}}" class="btn btn-success">Pridėti naują automobilį</a>
                         </div>
+
 
                     </div>
 
