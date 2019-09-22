@@ -1895,7 +1895,7 @@ function gallery_shortcode( $attr ) {
 }
 
 /**
- * Outputs the templates used by playlists.
+ * Outputs the template used by playlists.
  *
  * @since 3.9.0
  */
@@ -2176,7 +2176,7 @@ function wp_playlist_shortcode( $attr ) {
 
 	if ( 1 === $instance ) {
 		/**
-		 * Prints and enqueues playlist scripts, styles, and JavaScript templates.
+		 * Prints and enqueues playlist scripts, styles, and JavaScript template.
 		 *
 		 * @since 3.9.0
 		 *
@@ -3422,7 +3422,7 @@ function wp_prepare_attachment_for_js( $attachment ) {
 }
 
 /**
- * Enqueues all scripts, styles, settings, and templates necessary to use
+ * Enqueues all scripts, styles, settings, and template necessary to use
  * all media JS APIs.
  *
  * @since 3.5.0

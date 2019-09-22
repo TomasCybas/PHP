@@ -4048,7 +4048,7 @@ class wp_xmlrpc_server extends IXR_Server {
 	}
 
 	/**
-	 * Retrieve page templates.
+	 * Retrieve page template.
 	 *
 	 * @since 2.6.0
 	 *

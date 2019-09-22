@@ -1507,7 +1507,7 @@ function wp_default_scripts( &$scripts ) {
 	$scripts->add( 'wp-embed', "/wp-includes/js/wp-embed$suffix.js" );
 
 	// To enqueue media-views or media-editor, call wp_enqueue_media().
-	// Both rely on numerous settings, styles, and templates to operate correctly.
+	// Both rely on numerous settings, styles, and template to operate correctly.
 	$scripts->add( 'media-views', "/wp-includes/js/media-views$suffix.js", array( 'utils', 'media-models', 'wp-plupload', 'jquery-ui-sortable', 'wp-mediaelement', 'wp-api-request' ), false, 1 );
 	$scripts->add( 'media-editor', "/wp-includes/js/media-editor$suffix.js", array( 'shortcode', 'media-views' ), false, 1 );
 	$scripts->add( 'media-audiovideo', "/wp-includes/js/media-audiovideo$suffix.js", array( 'media-editor' ), false, 1 );

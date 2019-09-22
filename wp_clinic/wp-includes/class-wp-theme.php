@@ -1123,11 +1123,11 @@ final class WP_Theme implements ArrayAccess {
 	}
 
 	/**
-	 * Returns the theme's post templates.
+	 * Returns the theme's post template.
 	 *
 	 * @since 4.7.0
 	 *
-	 * @return array Array of page templates, keyed by filename and post type,
+	 * @return array Array of page template, keyed by filename and post type,
 	 *               with the value of the translated header name.
 	 */
 	public function get_post_templates() {
@@ -1178,15 +1178,15 @@ final class WP_Theme implements ArrayAccess {
 	}
 
 	/**
-	 * Returns the theme's post templates for a given post type.
+	 * Returns the theme's post template for a given post type.
 	 *
 	 * @since 3.4.0
 	 * @since 4.7.0 Added the `$post_type` parameter.
 	 *
 	 * @param WP_Post|null $post      Optional. The post being edited, provided for context.
-	 * @param string       $post_type Optional. Post type to get the templates for. Default 'page'.
+	 * @param string       $post_type Optional. Post type to get the template for. Default 'page'.
 	 *                                If a post is provided, its post type is used.
-	 * @return array Array of page templates, keyed by filename, with the value of the translated header name.
+	 * @return array Array of page template, keyed by filename, with the value of the translated header name.
 	 */
 	public function get_page_templates( $post = null, $post_type = 'page' ) {
 		if ( $post ) {
@@ -1197,20 +1197,20 @@ final class WP_Theme implements ArrayAccess {
 		$post_templates = isset( $post_templates[ $post_type ] ) ? $post_templates[ $post_type ] : array();
 
 		/**
-		 * Filters list of page templates for a theme.
+		 * Filters list of page template for a theme.
 		 *
 		 * @since 4.9.6
 		 *
-		 * @param string[]     $post_templates Array of page templates. Keys are filenames,
+		 * @param string[]     $post_templates Array of page template. Keys are filenames,
 		 *                                     values are translated names.
 		 * @param WP_Theme     $this           The theme object.
 		 * @param WP_Post|null $post           The post being edited, provided for context, or null.
-		 * @param string       $post_type      Post type to get the templates for.
+		 * @param string       $post_type      Post type to get the template for.
 		 */
 		$post_templates = (array) apply_filters( 'theme_templates', $post_templates, $this, $post, $post_type );
 
 		/**
-		 * Filters list of page templates for a theme.
+		 * Filters list of page template for a theme.
 		 *
 		 * The dynamic portion of the hook name, `$post_type`, refers to the post type.
 		 *
@@ -1218,11 +1218,11 @@ final class WP_Theme implements ArrayAccess {
 		 * @since 4.4.0 Converted to allow complete control over the `$page_templates` array.
 		 * @since 4.7.0 Added the `$post_type` parameter.
 		 *
-		 * @param string[]     $post_templates Array of page templates. Keys are filenames,
+		 * @param string[]     $post_templates Array of page template. Keys are filenames,
 		 *                                     values are translated names.
 		 * @param WP_Theme     $this           The theme object.
 		 * @param WP_Post|null $post           The post being edited, provided for context, or null.
-		 * @param string       $post_type      Post type to get the templates for.
+		 * @param string       $post_type      Post type to get the template for.
 		 */
 		$post_templates = (array) apply_filters( "theme_{$post_type}_templates", $post_templates, $this, $post, $post_type );
 

@@ -258,7 +258,7 @@ do_action( 'customize_controls_print_scripts' );
 	<?php
 
 	/**
-	 * Prints templates, control scripts, and settings in the footer.
+	 * Prints template, control scripts, and settings in the footer.
 	 *
 	 * @since 3.4.0
 	 */

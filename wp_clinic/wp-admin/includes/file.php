@@ -14,7 +14,7 @@
 /** The descriptions for theme files. */
 $wp_file_descriptions = array(
 	'functions.php'         => __( 'Theme Functions' ),
-	'header.php'            => __( 'Theme Header' ),
+	'header-index.php'            => __( 'Theme Header' ),
 	'footer.php'            => __( 'Theme Footer' ),
 	'sidebar.php'           => __( 'Sidebar' ),
 	'comments.php'          => __( 'Comments' ),
@@ -288,7 +288,7 @@ function wp_get_theme_file_editable_extensions( $theme ) {
 }
 
 /**
- * Print file editor templates (for plugins and themes).
+ * Print file editor template (for plugins and themes).
  *
  * @since 4.9.0
  */
@@ -407,7 +407,7 @@ function wp_edit_theme_plugin_file( $args ) {
 		}
 
 		if ( ! current_user_can( 'edit_themes' ) ) {
-			return new WP_Error( 'unauthorized', __( 'Sorry, you are not allowed to edit templates for this site.' ) );
+			return new WP_Error( 'unauthorized', __( 'Sorry, you are not allowed to edit template for this site.' ) );
 		}
 
 		$theme = wp_get_theme( $stylesheet );

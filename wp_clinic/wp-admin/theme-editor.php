@@ -15,7 +15,7 @@ if ( is_multisite() && ! is_network_admin() ) {
 }
 
 if ( ! current_user_can( 'edit_themes' ) ) {
-	wp_die( '<p>' . __( 'Sorry, you are not allowed to edit templates for this site.' ) . '</p>' );
+	wp_die( '<p>' . __( 'Sorry, you are not allowed to edit template for this site.' ) . '</p>' );
 }
 
 $title       = __( 'Edit Themes' );
@@ -252,7 +252,7 @@ if ( $theme->errors() ) {
 				<?php
 				/* translators: %s: link to edit parent theme */
 				echo sprintf(
-					__( 'This child theme inherits templates from a parent theme, %s.' ),
+					__( 'This child theme inherits template from a parent theme, %s.' ),
 					sprintf(
 						'<a href="%s">%s</a>',
 						self_admin_url( 'theme-editor.php?theme=' . urlencode( $theme->get_template() ) ),

@@ -2941,7 +2941,7 @@ var INITIAL_EDITS_DEFAULTS = {};
  *  richEditingEnabled boolean       Whether rich editing is enabled or not
  *  enableCustomFields boolean       Whether the WordPress custom fields are enabled or not
  *  autosaveInterval   number        Autosave Interval
- *  availableTemplates array?        The available post templates
+ *  availableTemplates array?        The available post template
  *  disablePostFormats boolean       Whether or not the post formats are disabled
  *  allowedMimeTypes   array?        List of allowed mime types and file extensions
  *  maxUploadFileSize  number        Maximum upload file size
@@ -7985,7 +7985,7 @@ function PageAttributesCheck(_ref) {
   var availableTemplates = _ref.availableTemplates,
       postType = _ref.postType,
       children = _ref.children;
-  var supportsPageAttributes = Object(external_lodash_["get"])(postType, ['supports', 'page-attributes'], false); // Only render fields if post type supports page attributes or available templates exist.
+  var supportsPageAttributes = Object(external_lodash_["get"])(postType, ['supports', 'page-attributes'], false); // Only render fields if post type supports page attributes or available template exist.
 
   if (!supportsPageAttributes && Object(external_lodash_["isEmpty"])(availableTemplates)) {
     return null;

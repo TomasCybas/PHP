@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.table-hover {
+    tr {
+        &:hover{
+            cursor: pointer !important;
+        }
+        td {
+            &:hover {
+                cursor: pointer !important;
+            }
+        }
+    }
+}
+
+

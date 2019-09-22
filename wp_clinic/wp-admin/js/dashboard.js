@@ -486,7 +486,7 @@ jQuery( function( $ ) {
 			};
 
 			/*
-			 * Determine which templates should be rendered and which elements
+			 * Determine which template should be rendered and which elements
 			 * should be displayed.
 			 */
 			if ( templateParams.location.ip ) {

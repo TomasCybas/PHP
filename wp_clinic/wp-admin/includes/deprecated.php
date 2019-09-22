@@ -570,7 +570,7 @@ class WP_User_Search {
 	}
 
 	/**
-	 * Prepares variables for use in templates.
+	 * Prepares variables for use in template.
 	 *
 	 * @since 2.1.0
 	 * @access public

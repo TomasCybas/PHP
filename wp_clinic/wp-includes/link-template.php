@@ -1923,7 +1923,7 @@ function adjacent_posts_rel_link( $title = '%title', $in_same_term = false, $exc
  * Displays relational links for the posts adjacent to the current post for single post pages.
  *
  * This is meant to be attached to actions like 'wp_head'. Do not call this directly in plugins
- * or theme templates.
+ * or theme template.
  *
  * @since 3.0.0
  *
@@ -3128,7 +3128,7 @@ function get_home_url( $blog_id = null, $path = '', $scheme = null ) {
 
 /**
  * Retrieves the URL for the current site where WordPress application files
- * (e.g. wp-blog-header.php or the wp-admin/ folder) are accessible.
+ * (e.g. wp-blog-header-index.php or the wp-admin/ folder) are accessible.
  *
  * Returns the 'site_url' option with the appropriate protocol, 'https' if
  * is_ssl() and 'http' otherwise. If $scheme is 'http' or 'https', is_ssl() is
@@ -3146,7 +3146,7 @@ function site_url( $path = '', $scheme = null ) {
 
 /**
  * Retrieves the URL for a given site where WordPress application files
- * (e.g. wp-blog-header.php or the wp-admin/ folder) are accessible.
+ * (e.g. wp-blog-header-index.php or the wp-admin/ folder) are accessible.
  *
  * Returns the 'site_url' option with the appropriate protocol, 'https' if
  * is_ssl() and 'http' otherwise. If `$scheme` is 'http' or 'https',

@@ -23,7 +23,7 @@ window.wp = window.wp || {};
 	wp.template = _.memoize(function ( id ) {
 		var compiled,
 			/*
-			 * Underscore's default ERB-style templates are incompatible with PHP
+			 * Underscore's default ERB-style template are incompatible with PHP
 			 * when asp_tags is enabled, so WordPress uses Mustache-inspired templating syntax.
 			 *
 			 * @see trac ticket #22344.

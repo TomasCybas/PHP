@@ -30,5 +30,26 @@ add_action('wp_footer', function(){
     wp_enqueue_script('clinic-custom-js', get_template_directory_uri()."/js/custom.js");
 });
 
+include 'custom-transparent-nav-walker.php';
+function register_menu(){
+	register_nav_menus([
+		'main_menu' => 'Main Menu',
+	]);
+}
+
+add_action('init', 'register_menu');
+
+function custom_nav_li($classes, $item ){
+		$classes[] = 'menu-megamenu-li';
+	return $classes;
+};
+add_filter('nav_menu_css_class', 'custom_nav_li', 10, 2);
+
+
+
+
+
+
+
 
 
