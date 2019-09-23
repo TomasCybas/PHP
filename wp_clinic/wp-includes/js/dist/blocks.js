@@ -11247,7 +11247,7 @@ function categories_updateCategory(slug, category) {
   Object(external_this_wp_data_["dispatch"])('core/blocks').updateCategory(slug, category);
 }
 
-// CONCATENATED MODULE: ./node_modules/@wordpress/blocks/build-module/api/templates.js
+// CONCATENATED MODULE: ./node_modules/@wordpress/blocks/build-module/api/template.js
 
 
 
@@ -11272,7 +11272,7 @@ function categories_updateCategory(slug, category) {
  * @param {Array} blocks    Block list.
  * @param {Array} template  Block template.
  *
- * @return {boolean}        Whether the list of blocks matches a templates
+ * @return {boolean}        Whether the list of blocks matches a template
  */
 
 function doBlocksMatchTemplate() {
@@ -11323,7 +11323,7 @@ function synchronizeBlocksWithTemplate() {
       return Object(objectSpread["a" /* default */])({}, block, {
         innerBlocks: innerBlocks
       });
-    } // To support old templates that were using the "children" format
+    } // To support old template that were using the "children" format
     // for the attributes using "html" strings now, we normalize the template attributes
     // before creating the blocks.
 
@@ -11347,7 +11347,7 @@ function synchronizeBlocksWithTemplate() {
     var normalizeAttribute = function normalizeAttribute(definition, value) {
       if (isHTMLAttribute(definition) && Object(external_lodash_["isArray"])(value)) {
         // Introduce a deprecated call at this point
-        // When we're confident that "children" format should be removed from the templates.
+        // When we're confident that "children" format should be removed from the template.
         return Object(external_this_wp_element_["renderToString"])(value);
       }
 

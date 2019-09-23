@@ -8,7 +8,7 @@
                     <div class="card-header">Dashboard</div>
 
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover super-custom-class">
                             <thead>
                             <tr>
                                 <th>Valst. Nr.</th>
@@ -22,8 +22,8 @@
                             </thead>
                             <tbody>
                         @foreach($cars as $car)
-                        <tr>
-                            <td>{{$car->reg_number}}</td>
+                        <tr class="text-capitalize" onclick="document.location='{{route('owners.details', $car->owner->id)}}'">
+                            <td class="text-uppercase">{{$car->reg_number}}</td>
                             <td>{{$car->brand}}</td>
                             <td>{{$car->model}}</td>
                             <td>{{$car->owner->name}} {{$car->owner->surname}}</td>

@@ -54,7 +54,7 @@ function get_query_template( $type, $templates = array() ) {
 	 * 'embed', 'home', 'frontpage', 'privacypolicy', 'page', 'paged', 'search', 'single', 'singular', and 'attachment'.
 	 *
 	 * @since 1.5.0
-	 * @since 4.8.0 The `$type` and `$templates` parameters were added.
+	 * @since 4.8.0 The `$type` and `$template` parameters were added.
 	 *
 	 * @param string $template  Path to the template. See locate_template().
 	 * @param string $type      Sanitized filename without extension.
@@ -406,7 +406,7 @@ function get_privacy_policy_template() {
  *
  * An example of this is:
  *
- * 1. page-templates/full-width.php
+ * 1. page-template/full-width.php
  * 2. page-about.php
  * 3. page-4.php
  * 4. page.php
@@ -483,7 +483,7 @@ function get_search_template() {
  *
  * An example of this is:
  *
- * 1. templates/full-width.php
+ * 1. template/full-width.php
  * 2. single-post-hello-world.php
  * 3. single-post.php
  * 4. single.php
@@ -704,7 +704,7 @@ function load_template( $_template_file, $require_once = true ) {
 	if ( is_array( $wp_query->query_vars ) ) {
 		/*
 		 * This use of extract() cannot be removed. There are many possible ways that
-		 * templates could depend on variables that it creates existing, and no way to
+		 * template could depend on variables that it creates existing, and no way to
 		 * detect and deprecate it.
 		 *
 		 * Passing the EXTR_SKIP flag is the safest option, ensuring globals and

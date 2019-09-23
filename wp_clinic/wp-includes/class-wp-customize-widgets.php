@@ -642,10 +642,10 @@ final class WP_Customize_Widgets {
 	 * @since 3.9.0
 	 */
 	public function print_styles() {
-		/** This action is documented in wp-admin/admin-header.php */
+		/** This action is documented in wp-admin/admin-header-index.php */
 		do_action( 'admin_print_styles-widgets.php' );
 
-		/** This action is documented in wp-admin/admin-header.php */
+		/** This action is documented in wp-admin/admin-header-index.php */
 		do_action( 'admin_print_styles' );
 	}
 
@@ -656,10 +656,10 @@ final class WP_Customize_Widgets {
 	 * @since 3.9.0
 	 */
 	public function print_scripts() {
-		/** This action is documented in wp-admin/admin-header.php */
+		/** This action is documented in wp-admin/admin-header-index.php */
 		do_action( 'admin_print_scripts-widgets.php' );
 
-		/** This action is documented in wp-admin/admin-header.php */
+		/** This action is documented in wp-admin/admin-header-index.php */
 		do_action( 'admin_print_scripts' );
 	}
 
@@ -678,12 +678,12 @@ final class WP_Customize_Widgets {
 		wp_enqueue_style( 'customize-widgets' );
 		wp_enqueue_script( 'customize-widgets' );
 
-		/** This action is documented in wp-admin/admin-header.php */
+		/** This action is documented in wp-admin/admin-header-index.php */
 		do_action( 'admin_enqueue_scripts', 'widgets.php' );
 
 		/*
 		 * Export available widgets with control_tpl removed from model
-		 * since plugins need templates to be in the DOM.
+		 * since plugins need template to be in the DOM.
 		 */
 		$available_widgets = array();
 
@@ -810,13 +810,13 @@ final class WP_Customize_Widgets {
 	}
 
 	/**
-	 * Renders the widget form control templates into the DOM.
+	 * Renders the widget form control template into the DOM.
 	 *
 	 * @since 3.9.0
 	 */
 	public function output_widget_control_templates() {
 		?>
-		<div id="widgets-left"><!-- compatibility with JS which looks for widget templates here -->
+		<div id="widgets-left"><!-- compatibility with JS which looks for widget template here -->
 		<div id="available-widgets">
 			<div class="customize-section-title">
 				<button class="customize-section-back" tabindex="-1">

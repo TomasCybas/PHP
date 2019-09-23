@@ -7464,7 +7464,7 @@ function getReusableBlocks(state) {
 function validateBlocksToTemplate(action, store) {
   var state = store.getState();
   var template = getTemplate(state);
-  var templateLock = selectors_getTemplateLock(state); // Unlocked templates are considered always valid because they act
+  var templateLock = selectors_getTemplateLock(state); // Unlocked template are considered always valid because they act
   // as default values only.
 
   var isBlocksValidToTemplate = !template || templateLock !== 'all' || Object(external_this_wp_blocks_["doBlocksMatchTemplate"])(action.blocks, template); // Update if validity has changed.
@@ -13389,7 +13389,7 @@ function (_Component) {
       }
     }
     /**
-     * Called on mount or when a mismatch exists between the templates and
+     * Called on mount or when a mismatch exists between the template and
      * inner blocks, synchronizes inner blocks with the template, replacing
      * current blocks.
      */
@@ -13401,7 +13401,7 @@ function (_Component) {
           template = _this$props3.template,
           block = _this$props3.block,
           replaceInnerBlocks = _this$props3.replaceInnerBlocks;
-      var innerBlocks = block.innerBlocks; // Synchronize with templates. If the next set differs, replace.
+      var innerBlocks = block.innerBlocks; // Synchronize with template. If the next set differs, replace.
 
       var nextBlocks = Object(external_this_wp_blocks_["synchronizeBlocksWithTemplate"])(innerBlocks, template);
 

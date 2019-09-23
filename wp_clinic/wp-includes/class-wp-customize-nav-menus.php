@@ -986,7 +986,7 @@ final class WP_Customize_Nav_Menus {
 	}
 
 	/**
-	 * Print the JavaScript templates used to render Menu Customizer components.
+	 * Print the JavaScript template used to render Menu Customizer components.
 	 *
 	 * Templates are imported into the JS use wp.template.
 	 *

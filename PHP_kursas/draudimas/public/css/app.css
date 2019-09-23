@@ -10644,3 +10644,11 @@ a.text-dark:focus {
   }
 }
 
+.table-hover tr:hover {
+  cursor: pointer !important;
+}
+
+.table-hover tr td:hover {
+  cursor: pointer !important;
+}
+

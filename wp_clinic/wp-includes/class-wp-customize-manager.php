@@ -118,7 +118,7 @@ final class WP_Customize_Manager {
 	protected $controls = array();
 
 	/**
-	 * Panel types that may be rendered from JS templates.
+	 * Panel types that may be rendered from JS template.
 	 *
 	 * @since 4.3.0
 	 * @var array
@@ -126,7 +126,7 @@ final class WP_Customize_Manager {
 	protected $registered_panel_types = array();
 
 	/**
-	 * Section types that may be rendered from JS templates.
+	 * Section types that may be rendered from JS template.
 	 *
 	 * @since 4.3.0
 	 * @var array
@@ -134,7 +134,7 @@ final class WP_Customize_Manager {
 	protected $registered_section_types = array();
 
 	/**
-	 * Control types that may be rendered from JS templates.
+	 * Control types that may be rendered from JS template.
 	 *
 	 * @since 4.1.0
 	 * @var array
@@ -389,7 +389,7 @@ final class WP_Customize_Manager {
 		add_action( 'customize_controls_init', array( $this, 'prepare_controls' ) );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_control_scripts' ) );
 
-		// Render Common, Panel, Section, and Control templates.
+		// Render Common, Panel, Section, and Control template.
 		add_action( 'customize_controls_print_footer_scripts', array( $this, 'render_panel_templates' ), 1 );
 		add_action( 'customize_controls_print_footer_scripts', array( $this, 'render_section_templates' ), 1 );
 		add_action( 'customize_controls_print_footer_scripts', array( $this, 'render_control_templates' ), 1 );
@@ -3848,7 +3848,7 @@ final class WP_Customize_Manager {
 	}
 
 	/**
-	 * Render JS templates for all registered panel types.
+	 * Render JS template for all registered panel types.
 	 *
 	 * @since 4.3.0
 	 */
@@ -3933,7 +3933,7 @@ final class WP_Customize_Manager {
 	}
 
 	/**
-	 * Render JS templates for all registered section types.
+	 * Render JS template for all registered section types.
 	 *
 	 * @since 4.3.0
 	 */
@@ -4024,7 +4024,7 @@ final class WP_Customize_Manager {
 	}
 
 	/**
-	 * Render JS templates for all registered control types.
+	 * Render JS template for all registered control types.
 	 *
 	 * @since 4.1.0
 	 */

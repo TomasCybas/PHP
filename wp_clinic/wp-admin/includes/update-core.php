@@ -104,7 +104,7 @@ $_old_files = array(
 	'wp-admin/js/dbx-admin-key.js',
 	'wp-admin/js/link-cat.js',
 	'wp-admin/profile-update.php',
-	'wp-admin/templates.php',
+	'wp-admin/template.php',
 	'wp-includes/images/wlw/WpComments.png',
 	'wp-includes/images/wlw/WpIcon.png',
 	'wp-includes/images/wlw/WpWatermark.png',

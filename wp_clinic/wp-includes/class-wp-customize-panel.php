@@ -299,7 +299,7 @@ class WP_Customize_Panel {
 	protected function render_content() {}
 
 	/**
-	 * Render the panel's JS templates.
+	 * Render the panel's JS template.
 	 *
 	 * This function is only run for panel types that have been registered with
 	 * WP_Customize_Manager::register_panel_type().

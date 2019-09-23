@@ -406,7 +406,7 @@ wp.customize.selectiveRefresh = ( function( $, api ) {
 		 *
 		 * @param {Placement}             placement
 		 * @param {Element|jQuery}        [placement.container]  - This param will be empty if there was no element matching the selector.
-		 * @param {string|object|boolean} placement.addedContent - Rendered HTML content, a data object for JS templates to render, or false if no render.
+		 * @param {string|object|boolean} placement.addedContent - Rendered HTML content, a data object for JS template to render, or false if no render.
 		 * @param {object}                [placement.context]    - Optional context information about the container.
 		 * @returns {boolean} Whether the rendering was successful and the fallback was not invoked.
 		 */

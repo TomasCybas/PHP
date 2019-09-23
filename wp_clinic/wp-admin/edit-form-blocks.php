@@ -147,7 +147,7 @@ $font_sizes    = current( (array) get_theme_support( 'editor-font-sizes' ) );
  */
 $allowed_block_types = apply_filters( 'allowed_block_types', true, $post );
 
-// Get all available templates for the post/page attributes meta-box.
+// Get all available template for the post/page attributes meta-box.
 // The "Default template" array element should only be added if the array is
 // not empty so we do not trigger the template select element without any options
 // besides the default value.

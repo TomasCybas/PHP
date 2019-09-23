@@ -1233,7 +1233,7 @@ function wp_print_community_events_markup() {
 }
 
 /**
- * Renders the events templates for the Event and News widget.
+ * Renders the events template for the Event and News widget.
  *
  * @since 4.8.0
  */

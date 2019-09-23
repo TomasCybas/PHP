@@ -47,12 +47,11 @@ class CarController extends Controller
         $car->reg_number = $request->reg_number;
         $car->brand = $request->brand;
         $car->model = $request->model;
-        $car->owner_id = $request->owner_id;
         $car->from_date = $request->from_date;
         $car->to_date = $request->to_date;
         $car->save();
 
-        return redirect()->route('owners.details', $request->owner_id);
+        return redirect()->route('owners.details', $car->owner_id);
     }
 
     public function deleteCar($id, $owner_id){

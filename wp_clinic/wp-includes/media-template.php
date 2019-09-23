@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress media templates.
+ * WordPress media template.
  *
  * @package WordPress
  * @subpackage Media
@@ -149,7 +149,7 @@ function wp_underscore_video_template() {
 }
 
 /**
- * Prints the templates used in the media manager.
+ * Prints the template used in the media manager.
  *
  * @since 3.5.0
  *
@@ -1343,7 +1343,7 @@ function wp_print_media_templates() {
 	<?php
 
 	/**
-	 * Fires when the custom Backbone media templates are printed.
+	 * Fires when the custom Backbone media template are printed.
 	 *
 	 * @since 3.5.0
 	 */

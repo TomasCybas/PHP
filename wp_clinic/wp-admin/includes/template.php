@@ -838,13 +838,13 @@ function touch_time( $edit = 1, $for_post = 1, $tab_index = 0, $multi = 0 ) {
 }
 
 /**
- * Print out option HTML elements for the page templates drop-down.
+ * Print out option HTML elements for the page template drop-down.
  *
  * @since 1.5.0
  * @since 4.7.0 Added the `$post_type` parameter.
  *
  * @param string $default   Optional. The template file name. Default empty.
- * @param string $post_type Optional. Post type to get templates for. Default 'post'.
+ * @param string $post_type Optional. Post type to get template for. Default 'post'.
  */
 function page_template_dropdown( $default = '', $post_type = 'page' ) {
 	$templates = get_page_templates( null, $post_type );
@@ -1925,25 +1925,25 @@ var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>',
 	isRtl = <?php echo (int) is_rtl(); ?>;
 </script>
 	<?php
-	/** This action is documented in wp-admin/admin-header.php */
+	/** This action is documented in wp-admin/admin-header-index.php */
 	do_action( 'admin_enqueue_scripts', $hook_suffix );
 
-	/** This action is documented in wp-admin/admin-header.php */
+	/** This action is documented in wp-admin/admin-header-index.php */
 	do_action( "admin_print_styles-$hook_suffix" );
 
-	/** This action is documented in wp-admin/admin-header.php */
+	/** This action is documented in wp-admin/admin-header-index.php */
 	do_action( 'admin_print_styles' );
 
-	/** This action is documented in wp-admin/admin-header.php */
+	/** This action is documented in wp-admin/admin-header-index.php */
 	do_action( "admin_print_scripts-$hook_suffix" );
 
-	/** This action is documented in wp-admin/admin-header.php */
+	/** This action is documented in wp-admin/admin-header-index.php */
 	do_action( 'admin_print_scripts' );
 
-	/** This action is documented in wp-admin/admin-header.php */
+	/** This action is documented in wp-admin/admin-header-index.php */
 	do_action( "admin_head-$hook_suffix" );
 
-	/** This action is documented in wp-admin/admin-header.php */
+	/** This action is documented in wp-admin/admin-header-index.php */
 	do_action( 'admin_head' );
 
 	$admin_body_class .= ' locale-' . sanitize_html_class( strtolower( str_replace( '_', '-', get_user_locale() ) ) );
@@ -1955,7 +1955,7 @@ var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>',
 	?>
 </head>
 	<?php
-	/** This filter is documented in wp-admin/admin-header.php */
+	/** This filter is documented in wp-admin/admin-header-index.php */
 	$admin_body_classes = apply_filters( 'admin_body_class', '' );
 	$admin_body_classes = ltrim( $admin_body_classes . ' ' . $admin_body_class );
 	?>

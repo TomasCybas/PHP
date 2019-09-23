@@ -1722,10 +1722,10 @@ function get_the_password_form( $post = 0 ) {
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.5.0
- * @since 4.2.0 The `$template` parameter was changed to also accept an array of page templates.
+ * @since 4.2.0 The `$template` parameter was changed to also accept an array of page template.
  * @since 4.7.0 Now works with any post type, not just pages.
  *
- * @param string|array $template The specific template name or array of templates to match.
+ * @param string|array $template The specific template name or array of template to match.
  * @return bool True on success, false on failure.
  */
 function is_page_template( $template = '' ) {

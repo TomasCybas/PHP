@@ -11,7 +11,7 @@
                         {{$owner->name}} <br>
                         {{$owner->surname}}
                         <div class="pb-2">
-                            <a href="{{route('owners.edit', $owner->id)}}" class="btn btn-success">Keisti saviinko informaciją</a>
+                            <a href="{{route('owners.edit', $owner->id)}}" class="btn btn-success">Keisti savininko informaciją</a>
                         </div>
                         <div class="pb-2">
                             <a href="{{route('owners.delete', $owner->id)}}" class="btn btn-danger">Ištrinti savininką</a>
@@ -36,6 +36,11 @@
                                     <td>{{$car->model}}</td>
                                     <td>{{$car->from_date}}</td>
                                     <td>{{$car->to_date}}</td>
+                                    <td>
+
+                                        <a href="{{route('cars.edit', $car->id)}}" class="btn btn-sm btn-success mb-1">Redaguoti</a>
+                                        <a href="{{route('cars.delete', [$car->id, $car->owner_id])}}" class="btn btn-sm btn-danger mb-1">Ištrinti </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </table>

@@ -689,7 +689,7 @@ function maintenance_nag() {
 }
 
 /**
- * Prints the JavaScript templates for update admin notices.
+ * Prints the JavaScript template for update admin notices.
  *
  * Template takes one argument with four values:
  *
@@ -770,7 +770,7 @@ function wp_print_admin_notice_templates() {
 }
 
 /**
- * Prints the JavaScript templates for update and deletion rows in list tables.
+ * Prints the JavaScript template for update and deletion rows in list tables.
  *
  * The update template takes one argument with four values:
  *
