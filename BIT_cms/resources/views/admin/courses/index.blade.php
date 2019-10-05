@@ -5,28 +5,27 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
+                    <div class="card-header">Kursai</div>
 
                     <div class="card-body">
                         <a href="{{route('courses.create')}}" class="btn btn-success m-2">Sukurti naują kursą</a>
 
-                        <table class="table">
-                         <thead>
-                         <tr>
-                             <th>Kurso pavadinimas</th>
-                             <th>Aprašymas</th>
-                         </tr>
-                         </thead>
-                         <tbody>
-                         @foreach($courses as $course)
-                             <tr>
-                                 <td>{{$course->name}}</td>
-                                 <td>{{$course->description}}</td>
-                             </tr>
-                             @endforeach
-                         </tbody>
+                        <ul class="list-group-flush">
+                            @foreach($courses as $course)
+                                <li class="list-group-item clearfix">
+                                    <h4>{{$course->name}}</h4>
+                                    <p>
+                                        {!! $course->description !!}
+                                    </p>
+                                    <div class="float-right">
+                                        <a href="{{route('courses.edit', $course)}}" class="btn btn-sm btn-success">Redaguoti</a>
+                                        <a href="{{route('courses.delete', $course)}}" class="btn btn-sm btn-danger">Ištrinti</a>
+                                    </div>
+                                </li>
+                            @endforeach
 
-                     </table>
+                        </ul>
+
                     </div>
                 </div>
             </div>

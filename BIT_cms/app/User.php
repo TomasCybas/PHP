@@ -41,6 +41,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Group', 'group_users');
     }
 
+    public function taughtGroup(){
+        return $this->hasMany('App\Group', 'teacher_id');
+    }
+
     public function isAdmin(){
         if($this->type == 1){
             return true;

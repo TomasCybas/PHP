@@ -11,6 +11,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.tiny.cloud/1/itcmncfc8swjr4gxb2ds1c3r44b56b3ir4taxhfx6v5n0ipo/tinymce/5/tinymce.min.js"
+            referrerpolicy="origin"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

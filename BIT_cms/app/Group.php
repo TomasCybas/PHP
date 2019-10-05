@@ -15,6 +15,10 @@ class Group extends Model
     }
 
     public function lectures(){
-        return $this->hasMany('App\Lecture');
+        return $this->hasMany('App\Lecture', 'group_id', 'id');
+    }
+
+    public function teacher(){
+        return $this->belongsTo('App\User', 'teacher_id', 'id');
     }
 }
