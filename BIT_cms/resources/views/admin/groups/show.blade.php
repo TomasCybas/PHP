@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="card-body clearfix">
-                        <a href="" class="btn btn-success mb-2">Pridėti paskaitą</a>
+                        <a href="{{route('lectures.create')}}" class="btn btn-success mb-2">Pridėti paskaitą</a>
                         <ul class="list-group-flush ">
                             @foreach($lectures as $lecture)
                             <li class="list-group-item">
@@ -26,11 +26,7 @@
                                     </li>
                                     @endforeach
                                 </ul>
-                                <div class="float-left">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#fileModal">
-                                        Pridėti failą
-                                    </button>                                </div>
+
                                 <div class="float-right">
                                     <a href="" class="btn btn-sm btn-success">Redaguoti paskaitą</a>
                                     <a href="" class="btn btn-sm btn-danger">Ištrinti paskaitą</a>
@@ -46,7 +42,12 @@
     </div>
 
 
-
+   {{-- <div class="float-left">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#fileModal">
+            Pridėti failą
+        </button>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -75,7 +76,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 @endsection
 
 @section('scripts')

@@ -38,6 +38,9 @@ Route::middleware('can:accessAdmin')->group(function(){
     Route::post('admin/groups/store/{group}', 'GroupController@update')->name('groups.update');
 });
 
+    //Lecture routes
+Route::get('admin/lectures/create', 'LectureController@create')->name('lectures.create');
+
 
 //Student routes
 Route::middleware('auth')->group(function(){
