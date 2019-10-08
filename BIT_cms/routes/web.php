@@ -40,6 +40,8 @@ Route::middleware('can:accessAdmin')->group(function(){
 
     //Lecture routes
 Route::get('admin/lectures/create', 'LectureController@create')->name('lectures.create');
+Route::post('admin/lectures/store', 'LectureController@store')->name('lectures.store');
+Route::get('admin/lectures/delete/{lecture}', 'LectureController@delete')->name('lectures.delete');
 
 
 //Student routes

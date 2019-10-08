@@ -21,7 +21,7 @@ class CreateFilesTable extends Migration
             $table->boolean('show')->default(false);
             $table->timestamps();
 
-            $table->foreign('lecture_id')->references('id')->on('lectures');
+            $table->foreign('lecture_id')->references('id')->on('lectures')->onDelete('cascade');
         });
     }
 

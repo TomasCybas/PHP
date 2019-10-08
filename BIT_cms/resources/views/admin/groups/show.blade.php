@@ -9,11 +9,11 @@
                     Paskaitos
                     </div>
 
-                    <div class="card-body clearfix">
+                    <div class="card-body ">
                         <a href="{{route('lectures.create')}}" class="btn btn-success mb-2">Pridėti paskaitą</a>
                         <ul class="list-group-flush ">
                             @foreach($lectures as $lecture)
-                            <li class="list-group-item">
+                            <li class="list-group-item clearfix">
                                 <h3>{{$lecture->name}}</h3>
                                 <small>{{$lecture->lecture_date}}</small>
                                 <p>
@@ -22,14 +22,14 @@
                                 <ul class="list-unstyled">
                                     @foreach($lecture->files as $file)
                                     <li>
-                                        <a href="{{$file->file}}">{{$file->name}}</a>
+                                        <a href="{{asset('storage/'.$file->file)}}">{{$file->name}}</a>
                                     </li>
                                     @endforeach
                                 </ul>
 
                                 <div class="float-right">
                                     <a href="" class="btn btn-sm btn-success">Redaguoti paskaitą</a>
-                                    <a href="" class="btn btn-sm btn-danger">Ištrinti paskaitą</a>
+                                    <a href="{{route('lectures.delete', $lecture)}}" class="btn btn-sm btn-danger">Ištrinti paskaitą</a>
                                 </div>
                             </li>
                             @endforeach

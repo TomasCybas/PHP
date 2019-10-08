@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">Nauja grupė</div>
                     <div class="card-body">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{route('lectures.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Paskaitos pavadinimas</label>
@@ -21,10 +21,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="group_id">Kursas</label>
+                                <label for="group_id">Grupė</label>
                                 <select type="text" name="group_id" id="group_id"
                                         class="form-control custom-select @error('group_id') is-invalid @enderror" required>
-                                    <option value="0">Pasirinkite kursą</option>
+                                    <option value="0">Pasirinkite grupę</option>
                                     @foreach($groups as $group)
                                         <option value="{{$group->id}}">{{$group->name}}</option>
                                     @endforeach
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <script>tinymce.init({selector:'#description'});</script>
                                 <label for="description">Aprašymas</label>
-                               <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="15" required>
+                               <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="15" >
                                    {{old('description')}}
 
                                </textarea>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="files" class="btn btn-sm btn-success file-input">Pasirinkti failus</label>
-                                <input type="file" name="files" id="files" multiple
+                                <input type="file" name="files[]" id="files" multiple
                                        class="form-control d-none">
                                 @error('files')
                                 <span class="invalid-feedback" role="alert">
