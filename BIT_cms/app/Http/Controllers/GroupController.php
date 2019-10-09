@@ -13,8 +13,15 @@ class GroupController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
-        $groups = Group::with(['course', 'teacher'])->get()->sortBy('begin_date');
-        return view('groups.index', ['groups' => $groups]);
+        $user = \Auth::user();
+        if($user->isAdmin()){
+            $groups = Group::with(['course', 'teacher'])->get()->sortBy('begin_date');
+            return view('admin.groups.index', ['groups' => $groups]);
+        } else {
+            $groups = $user->groups()->get();
+            return view('groups.index', ['groups' => $groups]);
+        }
+
     }
 
     public function show(Group $group){
@@ -29,7 +36,9 @@ class GroupController extends Controller
             ]);
         }else {
             return view('groups.show', [
-                'group' => $group
+                'group' => $group,
+                'lectures' => $lectures,
+
             ]);
         }
 

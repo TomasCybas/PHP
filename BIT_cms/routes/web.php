@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('groups');
 });
 
 Auth::routes();
@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Admin panel routes
 
 Route::middleware('can:accessAdmin')->group(function(){
+
     //Course routes
     Route::get('admin/courses', 'CourseController@index')->name('courses');
     Route::get('admin/courses/create', 'CourseController@create')->name('courses.create');
@@ -36,19 +37,37 @@ Route::middleware('can:accessAdmin')->group(function(){
     Route::post('admin/groups/store', 'GroupController@store')->name('groups.store');
     Route::get('admin/groups/edit/{group}', 'GroupController@edit')->name('groups.edit');
     Route::post('admin/groups/store/{group}', 'GroupController@update')->name('groups.update');
-});
 
     //Lecture routes
-Route::get('admin/lectures/create', 'LectureController@create')->name('lectures.create');
-Route::post('admin/lectures/store', 'LectureController@store')->name('lectures.store');
-Route::get('admin/lectures/delete/{lecture}', 'LectureController@delete')->name('lectures.delete');
+    Route::get('admin/lectures/create', 'LectureController@create')->name('lectures.create');
+    Route::post('admin/lectures/store', 'LectureController@store')->name('lectures.store');
+    Route::get('admin/lectures/edit/{lecture}', 'LectureController@edit')->name('lectures.edit');
+    Route::post('admin/lectures/update/{lecture}', 'LectureController@update')->name('lectures.update');
+    Route::get('admin/lectures/delete/{lecture}', 'LectureController@delete')->name('lectures.delete');
+
+    //File routes
+
+    Route::get('files/setShow/{file}', 'FileController@setShow')->name('files.setShow');
+    Route::get('files/delete/{file}', 'FileController@delete')->name('files.delete');
+});
 
 
-//Student routes
+
+
+
+//Student panel routes
+
 Route::middleware('auth')->group(function(){
+
+    //Group routes
     Route::get('groups', 'GroupController@index')->name('groups');
     Route::get('groups/show/{group}', 'GroupController@show')->name('groups.show');
 });
+
+
+
+
+
 
 
 

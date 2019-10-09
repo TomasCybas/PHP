@@ -8,6 +8,8 @@
                     <div class="card-header">Grupės</div>
 
                     <div class="card-body">
+                        <a href="{{route('groups.create')}}" class="btn btn-success mb-2">Kurti naują grupę</a>
+                        <a href="{{route('register')}}" class="btn btn-success mb-2">Varototojas</a>
                         <table class=" table table-responsive-md">
                             <thead>
                             <tr>

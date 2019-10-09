@@ -45,6 +45,40 @@ class LectureController extends Controller
 
     }
 
+    public function edit(Lecture $lecture){
+
+        $groups = Group::all();
+
+        return view('admin.lectures.edit', [
+            'lecture' => $lecture,
+            'groups' => $groups,
+            ] );
+    }
+
+    public function update(Request $request, Lecture $lecture){
+
+        $lecture->name = $request->name;
+        $lecture->description = $request->description;
+        $lecture->lecture_date = $request->lecture_date;
+        $lecture->group_id = $request->group_id;
+        $lecture->save();
+
+        if($request->hasFile('files')){
+            foreach ($request->file('files') as $file){
+                $path = $file->store("/");
+                $lecture_file = new File();
+                $lecture_file->file = $path;
+                $lecture_file->name = $file->getClientOriginalName();
+                $lecture_file->lecture_id = $lecture->id;
+                $lecture_file->save();
+            }
+
+        }
+
+        return redirect()->route('groups.show', $lecture->group_id);
+
+    }
+
     public function delete(Lecture $lecture){
         $group = $lecture->group_id;
         $lecture->delete();

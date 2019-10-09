@@ -19,16 +19,20 @@
                                 <p>
                                     {!! $lecture->description !!}
                                 </p>
+                                @if(count($lecture->files))
                                 <ul class="list-unstyled">
-                                    @foreach($lecture->files as $file)
-                                    <li>
-                                        <a href="{{asset('storage/'.$file->file)}}">{{$file->name}}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
 
+                                        <h4>Paskaitos failai</h4>
+                                        @foreach($lecture->files as $file)
+                                            <li class="m-2">
+                                                <a href="{{route('files.setShow', $file)}}" class="btn btn-sm btn-success">{{$file->show == 1 ? 'Nerodyti' : 'Rodyti'}}</a>
+                                                <a href="">{{$file->name}}</a>
+                                            </li>
+                                        @endforeach
+                                </ul>
+                                @endif
                                 <div class="float-right">
-                                    <a href="" class="btn btn-sm btn-success">Redaguoti paskaitą</a>
+                                    <a href="{{route('lectures.edit', $lecture)}}" class="btn btn-sm btn-success">Redaguoti paskaitą</a>
                                     <a href="{{route('lectures.delete', $lecture)}}" class="btn btn-sm btn-danger">Ištrinti paskaitą</a>
                                 </div>
                             </li>
@@ -41,6 +45,7 @@
         </div>
     </div>
 
+{{--TODO: show files in a table for better readability, move show buttton to the right, figure out file download!!!!!--}}
 
    {{-- <div class="float-left">
         <!-- Button trigger modal -->
@@ -80,5 +85,5 @@
 @endsection
 
 @section('scripts')
-{{--TODO: show selected file names--}}
+{{--TODO: show selected file names, fix back button--}}
 @endsection
