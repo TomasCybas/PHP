@@ -21,4 +21,9 @@ class Group extends Model
     public function teacher(){
         return $this->belongsTo('App\User', 'teacher_id', 'id');
     }
+
+    public function messages(){
+        return $this->hasMany('App\Message', 'group_id', 'id');
+        //TODO: foreign key/local key positions???
+    }
 }

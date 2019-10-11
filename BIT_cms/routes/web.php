@@ -49,6 +49,11 @@ Route::middleware('can:accessAdmin')->group(function(){
 
     Route::get('files/setShow/{file}', 'FileController@setShow')->name('files.setShow');
     Route::get('files/delete/{file}', 'FileController@delete')->name('files.delete');
+
+    //Message routes
+    Route::get('admin/messages/create/{user}', 'MessageController@create')->name('messages.create');
+    Route::post('admin/messages/store/{user}', 'MessageController@store')->name('messages.store');
+    Route::get('admin/messages/delete/{message}', 'MessageController@delete')->name('messages.delete');
 });
 
 
@@ -62,6 +67,12 @@ Route::middleware('auth')->group(function(){
     //Group routes
     Route::get('groups', 'GroupController@index')->name('groups');
     Route::get('groups/show/{group}', 'GroupController@show')->name('groups.show');
+    Route::get('edit_user/{user}', 'ProfileController@edit')->name('edit.user');
+    Route::post('update_user/{user}', 'ProfileController@update')->name('update.user');
+
+    //Message routes
+    Route::get('messages/{user}', 'MessageController@index')->name('messages');
+    Route::get('messages/show/{user}', 'MessageController@show')->name('messages.show');
 });
 
 

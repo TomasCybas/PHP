@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{$group->name}} admin <br>
+                    <div class="card-header">{{$group->name}} {{$group->teacher->name}} <br>
                     Paskaitos
                     </div>
 

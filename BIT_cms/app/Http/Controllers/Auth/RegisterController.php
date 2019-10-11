@@ -68,7 +68,11 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'type' => ['integer', 'max:11'],
-        ]);
+        ],
+            [
+                'required' => 'Laukas privalomas',
+                'unique' => 'Vartotojas su toku el. pašto adresu jau egzistuoja',
+            ]);
     }
 
     /**
@@ -88,4 +92,7 @@ class RegisterController extends Controller
             'type' => $data['type'],
         ]);
     }
+
 }
+
+//TODO: move edit and update to a separate controller to have access from student panel
