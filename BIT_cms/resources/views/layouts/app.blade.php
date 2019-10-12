@@ -41,14 +41,11 @@
                         @if(Auth::check())
                         @if(Auth::user()->isAdmin())
                             <li class="nav-item">
-                                <a href="" class="nav-link">Studentai</a>
+                                <a href="{{route('students')}}" class="nav-link">Studentai</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('courses')}}" class="nav-link">Kursai</a>
                             </li>
-
-
-
                             @endif
                             <li class="nav-item">
                                 <a href="{{route('groups')}}" class="nav-link">Grupės</a>

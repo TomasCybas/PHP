@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function index(){
+        $students = User::all()->where('type', '=', 0);
+        return view('admin.students.index', ['students' => $students]);
+    }
+
     public function edit(User $user){
         return view('edit_user', ['user' => $user]);
     }

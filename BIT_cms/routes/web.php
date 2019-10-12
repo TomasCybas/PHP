@@ -24,6 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('can:accessAdmin')->group(function(){
 
+    //Student routes
+    Route::get('admin/students', 'ProfileController@index')->name('students');
+
     //Course routes
     Route::get('admin/courses', 'CourseController@index')->name('courses');
     Route::get('admin/courses/create', 'CourseController@create')->name('courses.create');
