@@ -53,7 +53,7 @@ Route::middleware('can:accessAdmin')->group(function(){
     //Message routes
     Route::get('admin/messages/create/{user}', 'MessageController@create')->name('messages.create');
     Route::post('admin/messages/store/{user}', 'MessageController@store')->name('messages.store');
-    Route::get('admin/messages/delete/{message}', 'MessageController@delete')->name('messages.delete');
+    Route::get('admin/messages/delete/{message}/{user}', 'MessageController@delete')->name('messages.delete');
 });
 
 

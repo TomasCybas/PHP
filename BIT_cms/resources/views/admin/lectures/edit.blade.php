@@ -53,7 +53,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <script>tinymce.init({selector: '#description'});</script>
+                                <script></script>
                                 <label for="description">Aprašymas</label>
                                 <textarea id="description" name="description"
                                           class="form-control @error('description') is-invalid @enderror" rows="15">
@@ -82,24 +82,47 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                    <label for="files" class="btn btn-sm btn-success file-input">Pridėti
-                                        failus</label>
-                                    <input type="file" name="files[]" id="files" multiple
-                                           class="form-control d-none">
-                                    @error('files')
-                                    <span class="invalid-feedback" role="alert">
+                                <label for="files" class="btn btn-sm btn-success file-input">Pridėti
+                                    failus</label>
+                                <input type="file" name="files[]" id="files" multiple
+                                       class="form-control d-none">
+                                <p id="file_names">
+
+                                </p>
+                                @error('files')
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                @enderror
                             </div>
-                                <button type="submit" class="btn btn-success">Atnaujinti paskaitą</button>
-                                <a href="{{url()->previous()}}" class="btn btn-danger">Atgal</a>
+                            <button type="submit" class="btn btn-success">Atnaujinti paskaitą</button>
+                            <a href="{{url()->previous()}}" class="btn btn-danger">Atgal</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        tinymce.init({selector: '#description'});
+
+        $(document).ready(function () {
+            $('input[type="file"]').change(function (e) {
+                var fileNames = '';
+                var files = e.target.files;
+                console.log(files);
+                jQuery.each(files, function (index, file) {
+                    fileNames += file.name + '<br>'
+                });
+
+                $('#file_names').html(fileNames);
+            });
+        });
+    </script>
+
 @endsection
 
 

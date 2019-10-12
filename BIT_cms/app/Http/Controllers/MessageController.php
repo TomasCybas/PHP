@@ -8,13 +8,17 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
+    /**
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(User $user){
         if($user->isAdmin()){
             $messages  = $user->sentMessages()->get();
-            return view('admin.messages.index', ['messages' => $messages]);
+            return view('admin.messages.index', ['messages' => $messages, 'user' => $user]);
         } else{
-            $groups = $user->groups()->with('messages')->get();
-            return view('messages.index', ['groups' => $groups]);
+            $userGroups = $user->groups()->with('messages')->get();
+            return view('messages.index', ['userGroups' => $userGroups]);
         }
     }
 
@@ -23,6 +27,11 @@ class MessageController extends Controller
         return view('admin.messages.create', ['user' => $user, 'groups' => $groups]);
     }
 
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request, User $user){
       /*  $this->validate($request, [
 
@@ -39,13 +48,24 @@ class MessageController extends Controller
 
     }
 
+    /**
+     * @param Message $message
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Message $message){
 
         return view('messages.show', ['message' => $message]);
     }
 
-    public function delete(Message $message){
+    /**
+     * @param Message $message
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function delete(Message $message, User $user){
+
         $message->delete();
-        return redirect()->route('messages');
+        return redirect()->route('messages', $user);
     }
 }

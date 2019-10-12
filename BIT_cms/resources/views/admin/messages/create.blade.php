@@ -36,9 +36,8 @@
                      <div class="form-group">
                          <label for="message">Žinutė</label>
                          <textarea type="text" name="message" rows="5" id="message"
-                                   class="form-control @error('message') is-invalid @enderror"
-                                   placeholder="Rašykite žinutę" required>
-                             {{old('message')}}
+                                   class="form-control @error('message') is-invalid @enderror">
+
                          </textarea>
                          @error('message')
                          <span class="invalid-feedback" role="alert">
@@ -53,4 +52,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        tinymce.init({selector:'#message'});
+    </script>
 @endsection

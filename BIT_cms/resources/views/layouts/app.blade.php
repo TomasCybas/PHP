@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
     <script src="https://cdn.tiny.cloud/1/itcmncfc8swjr4gxb2ds1c3r44b56b3ir4taxhfx6v5n0ipo/tinymce/5/tinymce.min.js"
             referrerpolicy="origin">
     </script>
@@ -46,7 +46,10 @@
                             <li class="nav-item">
                                 <a href="{{route('courses')}}" class="nav-link">Kursai</a>
                             </li>
-                        @endif
+
+
+
+                            @endif
                             <li class="nav-item">
                                 <a href="{{route('groups')}}" class="nav-link">Grupės</a>
                             </li>
@@ -67,6 +70,9 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a href="{{route('messages', Auth::user())}}" class="nav-link">Žinutės</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -98,5 +104,6 @@
             @yield('content')
         </main>
     </div>
+@yield('scripts')
 </body>
 </html>
