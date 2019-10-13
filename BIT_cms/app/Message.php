@@ -13,4 +13,6 @@ class Message extends Model
     public function sender(){
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
+
 }

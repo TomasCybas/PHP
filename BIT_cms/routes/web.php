@@ -26,6 +26,7 @@ Route::middleware('can:accessAdmin')->group(function(){
 
     //Student routes
     Route::get('admin/students', 'ProfileController@index')->name('students');
+    Route::post('admin/groupUsersStore', 'GroupUsersController@store')->name('groupUsers.store');
 
     //Course routes
     Route::get('admin/courses', 'CourseController@index')->name('courses');
@@ -40,6 +41,7 @@ Route::middleware('can:accessAdmin')->group(function(){
     Route::post('admin/groups/store', 'GroupController@store')->name('groups.store');
     Route::get('admin/groups/edit/{group}', 'GroupController@edit')->name('groups.edit');
     Route::post('admin/groups/store/{group}', 'GroupController@update')->name('groups.update');
+    Route::post('admin/groups/delete/{group}', 'GroupController@delete')->name('groups.delete');
 
     //Lecture routes
     Route::get('admin/lectures/create', 'LectureController@create')->name('lectures.create');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,8 @@ class ProfileController extends Controller
 {
     public function index(){
         $students = User::all()->where('type', '=', 0);
-        return view('admin.students.index', ['students' => $students]);
+        $groups = Group::all();
+        return view('admin.students.index', ['students' => $students, 'groups' => $groups]);
     }
 
     public function edit(User $user){

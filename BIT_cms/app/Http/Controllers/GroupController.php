@@ -89,12 +89,13 @@ class GroupController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit(){
+    public function edit(Group $group){
         $courses = Course::all();
         $teachers = \DB::table('users')->where('type', '=', '1')->get();
         return view('admin.groups.edit', [
             'courses' => $courses,
             'teachers' => $teachers,
+            'group' => $group,
         ]);
     }
 
