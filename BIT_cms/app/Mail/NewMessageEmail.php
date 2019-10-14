@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,14 +12,16 @@ class NewMessageEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $emailMessage;
+
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param Message $emailMessage
      */
-    public function __construct()
+    public function __construct(Message $emailMessage)
     {
-        //
+         $this->emailMessage = $emailMessage;
     }
 
     /**
@@ -28,6 +31,6 @@ class NewMessageEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('admin.messages.mail');
+        return $this->view('admin.messages.mail', ['emailMessage' => $this->emailMessage]);
     }
 }
