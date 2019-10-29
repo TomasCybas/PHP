@@ -27,7 +27,7 @@
                                             @foreach($lecture->files as $file)
                                                 @if($file->show != 0)
                                                     <li class="m-2">
-                                                        <a href="">{{$file->name}}</a>
+                                                        <a href="{{asset('/storage/'.$file->name)}}">{{$file->name}}</a>
                                                     </li>
                                                 @endif
                                             @endforeach
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    {{--TODO: show files in a table for better readability(maybe), figure out file download!!!!!--}}
+    {{--TODO: show files in a table for better readability(maybe)--}}
 
 @endsection
 

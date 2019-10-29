@@ -32,7 +32,7 @@ class LectureController extends Controller
 
         if($request->hasFile('files')){
             foreach ($request->file('files') as $file){
-                $path = $file->store("/");
+                $path = $file->store("/public");
                 $lecture_file = new File();
                 $lecture_file->file = $path;
                 $lecture_file->name = $file->getClientOriginalName();
@@ -65,7 +65,7 @@ class LectureController extends Controller
 
         if($request->hasFile('files')){
             foreach ($request->file('files') as $file){
-                $path = $file->store("/");
+                $path = $file->storeAs("/public", $file->getClientOriginalName());
                 $lecture_file = new File();
                 $lecture_file->file = $path;
                 $lecture_file->name = $file->getClientOriginalName();
@@ -79,6 +79,11 @@ class LectureController extends Controller
 
     }
 
+    /**
+     * @param Lecture $lecture
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function delete(Lecture $lecture){
         $group = $lecture->group_id;
         $lecture->delete();

@@ -28,6 +28,6 @@ class SendMessageEmail
     public function handle(NewMessage $event)
     {
         $students = $event->message->group->students;
-        \Mail::to($students)->send(new NewMessageEmail());
+        \Mail::to($students)->send(new NewMessageEmail($event->message));
     }
 }

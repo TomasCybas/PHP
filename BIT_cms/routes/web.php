@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// Admin panel routes
+// AdminSeeder panel routes
 
 Route::middleware('can:accessAdmin')->group(function(){
 
